@@ -18,7 +18,7 @@
           "resources": [
             {
               "type": "Microsoft.Storage/storageAccounts",
-              "name": "teststorageeeee",
+              "name": "[variables('storageName')]",
               "apiVersion": "2015-06-15",
               "location": "West Europe",
               "properties": {
