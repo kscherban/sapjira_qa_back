@@ -3,6 +3,9 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
   },
+  "variables": {
+    "storageName": "[concat(parameters('storageNamePrefix'), uniqueString(resourceGroup().id))]"
+  },
   "resources": [
     {
       "apiVersion": "2017-05-10",
