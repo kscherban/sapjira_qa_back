@@ -1,4 +1,16 @@
 {
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "publicIPAddressName": "myPublicIP",
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+        "subnetName": "Subnet",
+        "subnetPrefix": "10.0.0.0/24",
+        "virtualNetworkName": "MyVNET",
+        "nicName": "myVMNic",
+        "addressPrefix": "10.0.0.0/16",
+        "vnatname": "testvnat"
+    },
 "resources": [
 {
     "comments": "Public IP Address Resource",
