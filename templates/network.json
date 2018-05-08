@@ -7,7 +7,6 @@
         "subnetName": "Subnet",
         "subnetPrefix": "10.0.0.0/24",
         "virtualNetworkName": "MyVNET",
-        "nicName": "myVMNic",
         "addressPrefix": "10.0.0.0/16",
         "vnatname": "testvnat"
     },
