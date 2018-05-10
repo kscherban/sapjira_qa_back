@@ -3,11 +3,11 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageNamePrefix": {
-      "type": "string"
+      "type": "object"
     }
   },
   "variables": {
-    "storageName": "[concat(parameters('storageNamePrefix'), uniqueString(resourceGroup().id))]"
+    "storageName": "[concat(parameters('storageNamePrefix').storageNamePrefix, uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
