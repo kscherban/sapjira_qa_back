@@ -12,7 +12,7 @@
     },
     "parameters": {
         "nicName": {
-            "type": "object"
+            "type": "string"
           }
     },
 "resources": [
