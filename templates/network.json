@@ -12,10 +12,7 @@
     },
     "parameters": {
         "nicName": {
-            "type": "string",
-            "metadata": {
-              "description": "Network interface name"
-            }
+            "type": "object"
           }
     },
 "resources": [
