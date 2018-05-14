@@ -22,7 +22,7 @@
           "resources": [
             {
               "type": "Microsoft.Storage/storageAccounts",
-              "name": "[variables('storageName')]",
+              "name": "storage",
               "apiVersion": "2015-06-15",
               "location": "West Europe",
               "properties": {
