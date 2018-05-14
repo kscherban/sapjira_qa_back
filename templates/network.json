@@ -48,11 +48,9 @@
   {
     "apiVersion": "2016-03-30",
     "type": "Microsoft.Network/networkInterfaces",
-    "name": "nic0",
+    "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
     ],
     "properties": {
       "ipConfigurations": [
