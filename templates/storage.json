@@ -7,7 +7,7 @@
     }
   },
   "variables": {
-    "storageName": "[parameters('storageNamePrefix')]"
+    "storageName": "[concat(parameters('storageNamePrefix'), 'st')]"
   },
   "resources": [
     {
@@ -22,7 +22,7 @@
           "resources": [
             {
               "type": "Microsoft.Storage/storageAccounts",
-              "name": "storage",
+              "name": "[variables('storageName')]",
               "apiVersion": "2015-06-15",
               "location": "West Europe",
               "properties": {
