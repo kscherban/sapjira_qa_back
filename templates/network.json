@@ -62,7 +62,7 @@
           "name": "ipconfig1",
           "properties": {
             "publicIPAddress": {
-              "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', 'publicip')]"
+              "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
             },
             "privateIPAllocationMethod": "Dynamic",
             "subnet": {
