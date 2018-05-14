@@ -50,7 +50,7 @@
   {
     "apiVersion": "2016-03-30",
     "type": "Microsoft.Network/networkInterfaces",
-    "name": "[parameters('nicName')]",
+    "name": "[concat(parameters('nicName'), copyIndex())]",
     "location": "West Europe",
     "dependsOn": [
       "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
