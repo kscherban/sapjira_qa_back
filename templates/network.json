@@ -41,9 +41,9 @@
               "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
             },
             "privateIPAllocationMethod": "Dynamic",
-            "subnet": {
-              "id": "[variables('subnetRef')]"
-            }
+            // "subnet": {
+            //   "id": "[variables('subnetRef')]"
+            // }
           }
         }
       ]
