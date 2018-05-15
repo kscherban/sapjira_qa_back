@@ -87,7 +87,7 @@
       "count" : 3
     },
     "dependsOn": [
-      "[concat('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]"
+      "[concat('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'), copyindex())]"
     ],
     "properties": {
       "ipConfigurations": [
