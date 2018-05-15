@@ -75,6 +75,10 @@
     "type": "Microsoft.Network/networkInterfaces",
     "name": "[concat(parameters('nicName'), copyindex())]",
     "location": "West Europe",
+    "copy" : {
+      "name" : "publicIpCopy",
+      "count" : 3
+    },
     "dependsOn": [
       "[concat('Microsoft.Network/publicIPAddresses/', 'ip')]"
     ],
