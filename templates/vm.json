@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "nicName": {
+            "type": "string"
+          },
+          "virtualNetworkName": {
+              "type": "string"
+          },
+          "adminUsername": {
+            "type": "string"
+          },
+          "adminPassword": {
+            "type": "string"
+          }
+    },
+    "variables": {
+        "subnetName": "Subnet",
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
+    },
+"resources": [
+  {
+    "apiVersion": "2017-03-30",
+    "type": "Microsoft.Compute/virtualMachines",
+    "name": "[concat('myvm', copyIndex())]",
+    "location": "West Europe",
+    "copy": {
+      "name": "vmcopy",
+      "count": 3
+    },
+    "dependsOn": [
+      "[concat(parameters('nicName'), copyIndex())]"
+    ],
+    "properties": {
+      "networkProfile": {
+        "copy": [
+          {
+        "name": "interface",
+        "count": 3,
+        "input": {
+        "networkInterfaces": [
+          {
+            "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicName'), copyIndex()))]"
+          }
+        ]
+      }
+    }
+    ]
+    },
+      "hardwareProfile": { "vmSize": "Standard_A0" },
+      "osProfile": {
+        "computerName": "[concat('myvm', copyIndex())]",
+        "adminUsername": "[parameters('adminUsername')]",
+        "adminPassword": "[parameters('adminPassword')]"
+      },
+      "storageProfile": {
+        "imageReference": {
+          "publisher": "Canonical",
+          "offer": "UbuntuServer",
+          "sku": "16.04-LTS",
+          "version": "latest"
+        },
+        "osDisk": {
+          "name": "myManagedOSDisk",
+          "caching": "ReadWrite",
+          "createOption": "FromImage"
+        }
+      }
+    }
+  },
+{
+    "comments": "Public IP Address Resource",
+    "apiVersion": "2015-06-15",
+    "type": "Microsoft.Network/publicIPAddresses",
+    "name": "[parameters('nicName')]",
+    "location": "West Europe",
+    "properties": {
+      "publicIPAllocationMethod": "Dynamic"
+    }
+  }, 
+  {
+    "apiVersion": "2016-03-30",
+    "type": "Microsoft.Network/networkInterfaces",
+    "name": "[parameters('nicName')]",
+    "location": "West Europe",
+    "dependsOn": [
+      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]",
+      "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
+    ],
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig",
+          "properties": {
+            "publicIPAddress": {
+              "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
+            },
+            "privateIPAllocationMethod": "Dynamic",
+            "subnet": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
+            }
+          }
+        }
+      ]
+    }
+  }
+]
+}
+
+
+
