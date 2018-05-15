@@ -43,7 +43,7 @@
             },
             "privateIPAllocationMethod": "Dynamic",
             "subnet": {
-              "id": "[variables('subnetRef')]"
+              "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
             }
           }
         }
