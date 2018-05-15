@@ -36,7 +36,6 @@
           }
         ]
       }
-    }
     },
       "hardwareProfile": { "vmSize": "Standard_A0" },
       "osProfile": {
