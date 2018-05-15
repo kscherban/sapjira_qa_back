@@ -23,12 +23,8 @@
   {
     "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/virtualMachines",
-    "name": "[concat('myvm', copyIndex())]",
+    "name": "[concat('myvm')]",
     "location": "West Europe",
-    "copy": {
-      "name": "vmcopy",
-      "count": 3
-    },
     "dependsOn": [
       "[parameters('nicName')]"
     ],
@@ -41,7 +37,7 @@
         "input": {
         "networkInterfaces": [
           {
-            "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicName'), copyIndex()))]"
+            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
           }
         ]
       }
@@ -50,7 +46,7 @@
     },
       "hardwareProfile": { "vmSize": "Standard_A0" },
       "osProfile": {
-        "computerName": "[concat('myvm', copyIndex())]",
+        "computerName": "[concat('myvm')]",
         "adminUsername": "[parameters('adminUsername')]",
         "adminPassword": "[parameters('adminPassword')]"
       },
