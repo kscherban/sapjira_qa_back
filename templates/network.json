@@ -57,7 +57,7 @@
     "properties": {
       "ipConfigurations": [
         {
-          "name": "[concat('ipconfig-', parameters('nicName')]",
+          "name": "[concat('ipconfig-', parameters('nicName'))]",
           "properties": {
             "publicIPAddress": {
               "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
