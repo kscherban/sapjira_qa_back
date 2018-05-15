@@ -30,7 +30,6 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
       "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
     ],
     "properties": {
