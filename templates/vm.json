@@ -35,7 +35,6 @@
             "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
           }
         ]
-      }
     },
       "hardwareProfile": { "vmSize": "Standard_A0" },
       "osProfile": {
@@ -56,6 +55,7 @@
           "createOption": "FromImage"
         }
       }
+    }
     },
 {
     "comments": "Public IP Address Resource",
