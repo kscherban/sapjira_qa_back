@@ -4,11 +4,14 @@
     "variables": {
         "subnetName": "Subnet",
         "virtualNetworkName": "MyVNET",
-        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
     },
     "parameters": {
         "nicName": {
             "type": "string"
+          },
+          "virtualNetworkName": {
+              "type": "string"
           }
     },
 "resources": [
@@ -28,7 +31,7 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+      "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
       "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
     ],
     "properties": {
