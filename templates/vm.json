@@ -85,8 +85,7 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]",
-      "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
+      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
     ],
     "properties": {
       "ipConfigurations": [
