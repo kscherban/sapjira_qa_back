@@ -30,20 +30,21 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
+      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]",
+      "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
     ],
     "properties": {
       "ipConfigurations": [
         {
-          "name": "[concat('ipconfig-', parameters('nicName'))]",
+          "name": "ipconfig",
           "properties": {
             "publicIPAddress": {
               "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
             },
             "privateIPAllocationMethod": "Dynamic",
-            // "subnet": {
-            //   "id": "[variables('subnetRef')]"
-            // }
+            "subnet": {
+              "id": "[variables('subnetRef')]"
+            }
           }
         }
       ]
