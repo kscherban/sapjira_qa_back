@@ -23,7 +23,7 @@
   {
     "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/virtualMachines",
-    "name": "[concat('myvm')]",
+    "name": "myvm",
     "location": "West Europe",
     "dependsOn": [
       "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
