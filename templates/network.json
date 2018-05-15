@@ -1,11 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "variables": {
-        "subnetName": "Subnet",
-        "virtualNetworkName": "MyVNET",
-        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
-    },
     "parameters": {
         "nicName": {
             "type": "string"
@@ -13,6 +8,10 @@
           "virtualNetworkName": {
               "type": "string"
           }
+    },
+    "variables": {
+        "subnetName": "Subnet",
+        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
     },
 "resources": [
 {
