@@ -59,7 +59,7 @@
         }
       }
     }
-    },
+  },
 {
     "comments": "Public IP Address Resource",
     "apiVersion": "2015-06-15",
