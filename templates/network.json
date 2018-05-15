@@ -51,11 +51,13 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
+      "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
     ],
     "properties": {
       "ipConfigurations": [
         {
-          "name": "ipconfig1",
+          "name": "[concat('ipconfig-', parameters('nicName')]",
           "properties": {
             "publicIPAddress": {
               "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
