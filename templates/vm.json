@@ -16,23 +16,26 @@
           }
     },
     "variables": {
-        "subnetName": "Subnet",
-        "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), variables('subnetName'))]"
+        "subnetName": "Subnet"
     },
 "resources": [
   {
     "apiVersion": "2017-03-30",
     "type": "Microsoft.Compute/virtualMachines",
-    "name": "myvm",
+    "name": "[concat('vm', copyIndex())]",
     "location": "West Europe",
+    "copy" : {
+      "name" : "copyvm",
+      "count" : 3
+},
     "dependsOn": [
-      "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
+      "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('nicName'), copyindex()))]"
     ],
     "properties": {
       "networkProfile": {
         "networkInterfaces": [
           {
-            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
+            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('nicName'), copyindex()))]"
           }
         ]
     },
