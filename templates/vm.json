@@ -67,7 +67,7 @@
     "name": "[concat('ip', copyindex())]",
     "location": "West Europe",
     "copy" : {
-      "name" : "publicIpCopy",
+      "name" : "IpCopy",
       "count" : 3
     },
     "properties": {
