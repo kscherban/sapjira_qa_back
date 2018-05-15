@@ -29,7 +29,7 @@
     "location": "West Europe",
     "copy" : {
       "name" : "copyvm",
-      "count" : 3
+      "count" : 2
 },
     "dependsOn": [
       "[concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), copyIndex())]"
@@ -71,7 +71,7 @@
     "location": "West Europe",
     "copy" : {
       "name" : "IpCopy",
-      "count" : 3
+      "count" : 2
     },
     "properties": {
       "publicIPAllocationMethod": "Dynamic"
@@ -84,7 +84,7 @@
     "location": "West Europe",
     "copy" : {
       "name" : "IntCopy",
-      "count" : 3
+      "count" : 2
     },
     "dependsOn": [
       "[concat('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'), copyindex())]"
