@@ -81,7 +81,7 @@
     "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
-      "[concat('Microsoft.Network/publicIPAddresses/', parameters('nicName'))]"
+      "[concat('Microsoft.Network/publicIPAddresses/', concat(parameters('nicName'), 'ip'))]"
     ],
     "properties": {
       "ipConfigurations": [
