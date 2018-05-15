@@ -95,7 +95,7 @@
           "name": "ipconfig",
           "properties": {
             "publicIPAddress": {
-              "id": "[resourceId ('Microsoft.Network/publicIPAddresses/', concat(parameters('nicName'), 'ip'))]"
+              "id": "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'), copyindex())]"
             },
             "privateIPAllocationMethod": "Dynamic",
             "subnet": {
