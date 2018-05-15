@@ -36,8 +36,8 @@
           }
         ]
     },
-      "hardwareProfile": { "vmSize": "Standard_A0" },
-      "osProfile": {
+      "hardwareProfile": { "vmSize": "Standard_DS3_v2" },
+       "osProfile": {
         "computerName": "[concat('myvm')]",
         "adminUsername": "[parameters('adminUsername')]",
         "adminPassword": "[parameters('adminPassword')]"
