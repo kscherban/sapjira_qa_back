@@ -73,7 +73,7 @@
   {
     "apiVersion": "2016-03-30",
     "type": "Microsoft.Network/networkInterfaces",
-    "name": "[concat(parameters('nicName'), copyindex())]",
+    "name": "[parameters('nicName')]",
     "location": "West Europe",
     "dependsOn": [
       "[concat('Microsoft.Network/publicIPAddresses/', concat(parameters('nicName'), 'ip'))]"
