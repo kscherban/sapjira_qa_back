@@ -30,7 +30,7 @@
       "count": 3
     },
     "dependsOn": [
-      "[concat(parameters('nicName'), copyIndex())]"
+      "[parameters('nicName')]"
     ],
     "properties": {
       "networkProfile": {
@@ -73,7 +73,7 @@
     "comments": "Public IP Address Resource",
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/publicIPAddresses",
-    "name": "[parameters('nicName')]",
+    "name": "[concat(parameters('nicName'), )]",
     "location": "West Europe",
     "properties": {
       "publicIPAllocationMethod": "Dynamic"
