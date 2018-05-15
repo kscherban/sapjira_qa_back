@@ -30,11 +30,6 @@
     ],
     "properties": {
       "networkProfile": {
-        "copy": [
-          {
-        "name": "interface",
-        "count": 3,
-        "input": {
         "networkInterfaces": [
           {
             "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('nicName'))]"
@@ -42,7 +37,6 @@
         ]
       }
     }
-    ]
     },
       "hardwareProfile": { "vmSize": "Standard_A0" },
       "osProfile": {
