@@ -29,7 +29,7 @@
       "count" : 3
 },
     "dependsOn": [
-      "[concat('Microsoft.Network/networkInterfaces/', parameters('nicName'), copyIndex())]"
+      "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('nicName'), copyindex()))]"
     ],
     "properties": {
       "networkProfile": {
