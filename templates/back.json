@@ -45,7 +45,7 @@
                 "requestedServiceObjectiveName": "Basic"
             },
             "dependsOn": [
-                "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]"
+                "[concat('sqlserver', uniqueString(resourceGroup().id))]"
             ]
         },
   {
