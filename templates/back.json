@@ -24,8 +24,8 @@
                 "password": "[parameters('dbPassword')]"
             },
             "database": {
-                "name": "jiradatabase",
-                "edition": "",
+                "name": "[concat(variables('namespace'), 'sqldatabase')]",
+                "edition": "Premium",
                 "collation": "SQL_Latin1_General_CP437_CI_AI",
                 "maxSizeBytes": "107374182400",
                 "schema": "jiraschema"
