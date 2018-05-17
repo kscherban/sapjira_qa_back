@@ -41,7 +41,7 @@
             "properties": {
                 "edition": "[variables('sql').database.edition]",
                 "collation": "[variables('sql').database.collation]",
-                "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+                // "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
                 "requestedServiceObjectiveName": "Basic"
             },
             "dependsOn": [
