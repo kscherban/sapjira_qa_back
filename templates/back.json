@@ -2,8 +2,21 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "dbUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "Database username"
+            }
+        },
+        "dbPassword": {
+            "type": "string",
+            "metadata": {
+                "description": "Database password"
+            }
+        }
     },
     "variables": {
+        "namespace": "jira",
         "sql": {
             "server": {
                 "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
@@ -20,6 +33,21 @@
         }
     },
     "resources": [
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "name": "[variables('sql').database.name]",
+            "apiVersion": "2014-04-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "edition": "[variables('sql').database.edition]",
+                "collation": "[variables('sql').database.collation]",
+                "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+                "requestedServiceObjectiveName": "Basic"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Sql/servers/', variables('sql').server.name)]"
+            ]
+        },
   {
     "name": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
     "type": "Microsoft.Sql/servers",
