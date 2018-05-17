@@ -35,7 +35,7 @@
     "resources": [
         {
             "type": "Microsoft.Sql/servers/databases",
-            "name": "[variables('sql').database.name]",
+            "name": "[concat(variables('sql').database.name, '/config')]",
             "apiVersion": "2014-04-01",
             "location": "[resourceGroup().location]",
             "properties": {
