@@ -1,0 +1,39 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    "variables": {
+        "sql": {
+            "server": {
+                "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
+                "username": "[parameters('dbUsername')]",
+                "password": "[parameters('dbPassword')]"
+            },
+            "database": {
+                "name": "[concat(variables('namespace'), 'sqldatabase')]",
+                "edition": "",
+                "collation": "SQL_Latin1_General_CP437_CI_AI",
+                "maxSizeBytes": "107374182400",
+                "schema": "jiraschema"
+            }
+        }
+    },
+    "resources": [
+  {
+    "name": "[concat('sqlserver', uniqueString(resourceGroup().id))]",
+    "type": "Microsoft.Sql/servers",
+    "apiVersion": "2015-05-01-preview",
+    "location": "[resourceGroup().location]",
+    "identity": {
+      "type": "SystemAssigned"
+    },
+    "properties": {
+      "administratorLogin": "[variables('sql').server.username]",
+      "administratorLoginPassword": "[variables('sql').server.password]",
+      "version": "12.0"
+    }
+  }  
+   ],
+    "outputs": {  }
+  }
