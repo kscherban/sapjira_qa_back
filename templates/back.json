@@ -24,7 +24,7 @@
                 "password": "[parameters('dbPassword')]"
             },
             "database": {
-                "name": "[concat(variables('namespace'), 'sqldatabase')]",
+                "name": "jiradatabase",
                 "edition": "",
                 "collation": "SQL_Latin1_General_CP437_CI_AI",
                 "maxSizeBytes": "107374182400",
@@ -41,7 +41,7 @@
             "properties": {
                 "edition": "[variables('sql').database.edition]",
                 "collation": "[variables('sql').database.collation]",
-                // "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+                "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
                 "requestedServiceObjectiveName": "Basic"
             },
             "dependsOn": [
