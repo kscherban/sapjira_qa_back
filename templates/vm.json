@@ -56,7 +56,7 @@
           "version": "latest"
         },
         "osDisk": {
-          "name": "[concat('myManagedOSDisk', copyindex()]",
+          "name": "[concat('myManagedOSDisk', copyindex())]",
           "caching": "ReadWrite",
           "createOption": "FromImage"
         }
