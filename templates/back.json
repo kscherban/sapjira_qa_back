@@ -16,7 +16,7 @@
         }
     },
     "variables": {
-        "namespace": "jira_",
+        "namespace": "jira",
         "sql": {
             "server": {
                 "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
