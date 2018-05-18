@@ -16,7 +16,7 @@
         }
     },
     "variables": {
-        "storageName": "datastorage"
+        "storageName": "datastorage",
         "namespace": "jira",
         "sql": {
             "server": {
