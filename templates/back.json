@@ -13,7 +13,13 @@
             "metadata": {
                 "description": "Database password"
             }
-        }
+        },
+        "adminUsername": {
+            "type": "string"
+          },
+          "adminPassword": {
+            "type": "string"
+          }
     },
     "variables": {
         "storageName": "datastorage",
