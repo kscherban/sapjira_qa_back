@@ -61,7 +61,7 @@
         },
         "dependsOn": [
             // "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]"
-            "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
+            // "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
         ]
     }
     ]
