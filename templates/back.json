@@ -33,22 +33,7 @@
         }
     },
     "resources": [
-        {
-            "type": "Microsoft.Sql/servers/databases",
-            "name": "[concat(variables('sql').server.name, '/databases')]",
-            "apiVersion": "2014-04-01",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "edition": "[variables('sql').database.edition]",
-                "collation": "[variables('sql').database.collation]",
-                "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
-                "requestedServiceObjectiveName": "Basic"
-            },
-            "dependsOn": [
-                // "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]"
-                "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
-            ]
-        },
+        
   {
     "name": "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]",
     "type": "Microsoft.Sql/servers",
@@ -61,7 +46,25 @@
       "administratorLogin": "[variables('sql').server.username]",
       "administratorLoginPassword": "[variables('sql').server.password]",
       "version": "12.0"
+    },
+    "resources": [
+    {
+        "type": "databases",
+        "name": "[concat(variables('sql').server.name, '/databases')]",
+        "apiVersion": "2015-05-01-preview",
+        "location": "[resourceGroup().location]",
+        "properties": {
+            "edition": "[variables('sql').database.edition]",
+            "collation": "[variables('sql').database.collation]",
+            "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+            "requestedServiceObjectiveName": "Basic"
+        },
+        "dependsOn": [
+            // "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]"
+            "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
+        ]
     }
+    ]
   }  
    ],
     "outputs": {  }
