@@ -36,7 +36,7 @@
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('storageName')]",
+            "name": "[concat(variables('storagename'), uniqueString(resourceGroup().id))]",
             "apiVersion": "2015-06-15",
             "location": "West Europe",
             "properties": {
