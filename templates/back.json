@@ -50,7 +50,7 @@
     "resources": [
     {
         "type": "databases",
-        "name": "[concat(variables('sql').server.name, '/databases')]",
+        "name": "[variables('sql').database.name]",
         "apiVersion": "2015-05-01-preview",
         "location": "[resourceGroup().location]",
         "properties": {
