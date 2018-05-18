@@ -16,6 +16,7 @@
         }
     },
     "variables": {
+        "storageName": "datastorage"
         "namespace": "jira",
         "sql": {
             "server": {
@@ -33,7 +34,15 @@
         }
     },
     "resources": [
-        
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('storageName')]",
+            "apiVersion": "2015-06-15",
+            "location": "West Europe",
+            "properties": {
+              "accountType": "Standard_LRS"
+            }
+          },
   {
     "name": "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]",
     "type": "Microsoft.Sql/servers",
