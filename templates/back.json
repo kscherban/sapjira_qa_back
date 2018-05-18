@@ -60,9 +60,8 @@
             "requestedServiceObjectiveName": "Basic"
         },
         "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', variables('sql').server.name)]"
             // "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]"
-            // "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
+            "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
         ]
     }
     ]
