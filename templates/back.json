@@ -16,7 +16,7 @@
         }
     },
     "variables": {
-        "namespace": "jira",
+        "namespace": "jira_",
         "sql": {
             "server": {
                 "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
@@ -46,7 +46,7 @@
             },
             "dependsOn": [
                 // "[concat('sqlserver', uniqueString(resourceGroup().id))]",
-                "[resourceId('Microsoft.Sql/servers/', variables('sql').server.name)]"
+                // "[resourceId('Microsoft.Sql/servers/', variables('sql').server.name)]"
             ]
         },
   {
