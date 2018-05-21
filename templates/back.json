@@ -187,7 +187,7 @@
             "value": "jiraappgateway"
           },
           "applicationGatewaySize": {
-            "defaultValue": "Standard_Small"
+            "value": "Standard_Small"
           },
           "applicationGatewayInstanceCount": {
             "value": 4
