@@ -169,8 +169,7 @@
           "mode": "Incremental",
           "TemplateLink": {
            "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
-          }
-        },
+          },
         "parameters": {
           "virtualNetworkName": {
             "value": "jvnet"
@@ -217,6 +216,7 @@
           }
         }
       } 
+    }
    ],
     "outputs": {  }
   }
