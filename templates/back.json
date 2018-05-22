@@ -113,7 +113,7 @@
         "location": "[resourceGroup().location]",
         "apiVersion": "2017-03-30",
         "dependsOn": [
-            "Microsoft.Network/virtualNetworks/jvnet"
+            "jvnet"
         ],
         "sku": {
           "name": "Standard_A1",
@@ -178,7 +178,7 @@
             "value": "10.0.0.0/16"
           },
           "subnetName": {
-            "value": "subnet1"
+            "value": "subnetgw"
           },
           "subnetPrefix": {
             "value": "10.0.1.0/24"
