@@ -48,9 +48,9 @@
         "name": "[parameters('applicationGatewayName')]",
         "type": "Microsoft.Network/applicationGateways",
         "location": "[parameters('location')]",
-        "dependsOn": [
-          "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
-        ],
+        // "dependsOn": [
+        //   "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        // ],
         "properties": {
           "sku": {
             "name": "[parameters('applicationGatewaySize')]",

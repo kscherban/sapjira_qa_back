@@ -42,7 +42,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "myVnet",
+            "name": "jvnet",
             "apiVersion": "2016-12-01",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -113,7 +113,7 @@
         "location": "[resourceGroup().location]",
         "apiVersion": "2017-03-30",
         "dependsOn": [
-            "Microsoft.Network/virtualNetworks/myVnet"
+            "Microsoft.Network/virtualNetworks/jvnet"
         ],
         "sku": {
           "name": "Standard_A1",
@@ -149,7 +149,7 @@
                             "name": "myIpConfig",
                             "properties": {
                               "subnet": {
-                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', 'myVnet'), '/subnets/mySubnet')]"
+                                "id": "[concat(resourceId('Microsoft.Network/virtualNetworks', 'jvnet'), '/subnets/mySubnet')]"
                               }
                             }
                           }
