@@ -44,34 +44,13 @@
     },
     "resources": [
       {
-        "apiVersion": "2015-06-15",
-        "type": "Microsoft.Network/virtualNetworks",
-        "name": "[parameters('virtualNetworkName')]",
-        "location": "[parameters('location')]",
-        "properties": {
-          "addressSpace": {
-            "addressPrefixes": [
-              "[parameters('vnetAddressPrefix')]"
-            ]
-          },
-          "subnets": [
-            {
-              "name": "[parameters('subnetName')]",
-              "properties": {
-                "addressPrefix": "[parameters('subnetPrefix')]"
-              }
-            }
-          ]
-        }
-      },
-      {
         "apiVersion": "2017-06-01",
         "name": "[parameters('applicationGatewayName')]",
         "type": "Microsoft.Network/applicationGateways",
         "location": "[parameters('location')]",
-        // "dependsOn": [
-        //   "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
-        // ],
+        "dependsOn": [
+          "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+        ],
         "properties": {
           "sku": {
             "name": "[parameters('applicationGatewaySize')]",
