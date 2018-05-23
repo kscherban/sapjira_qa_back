@@ -22,6 +22,7 @@
           }
     },
     "variables": {
+      "sapjiradcvnetid": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
         "storageName": "datastorage",
         "namespace": "jira",
         "sql": {
@@ -86,7 +87,7 @@
         "location": "[resourceGroup().location]",
         "apiVersion": "2017-03-30",
         "dependsOn": [
-            "jvnet"
+            "[variables('sapjiradcvnetid')]"
         ],
         "sku": {
           "name": "Standard_A1",
@@ -122,7 +123,7 @@
                             "name": "myIpConfig",
                             "properties": {
                               "subnet": {
-                                "id": "/subscriptions/4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac/resourceGroups/sapjira_shared/providers/Microsoft.Network/virtualNetworks/sapjiradc-vnet/subnets/sapjiraqaback"
+                                "id": "[concat(variables('sapjiradcvnetid'), 'sapjiraqaback')]"
                               }
                             }
                           }
@@ -133,56 +134,56 @@
             }
           }
         }
-      },
-      {
-        "apiVersion": "2017-05-10",
-        "name": "appgw",
-        "type": "Microsoft.Resources/deployments",
-        "properties": {
-          "mode": "Incremental",
-          "TemplateLink": {
-           "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
-          },
-        "parameters": {
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
-            },
-          "vnetAddressPrefix": {
-            "value": "[parameters('vnetAddressPrefix')]"
-          },
-          "subnetName": {
-            "value": "[parameters(subnetName)]"
-          },
-          "subnetPrefix": {
-            "value": "[parameters('subnetPrefix')]"
-          },
-          "applicationGatewayName": {
-            "value": "[parameters('applicationGatewayName')]"
-          },
-          "applicationGatewaySize": {
-            "value": "[parameters('applicationGatewaySize')]"
-          },
-          "applicationGatewayInstanceCount": {
-            "value": "[parameters('applicationGatewayInstanceCount')]"
-          },
-          "frontendPort": {
-            "value": "[parameters('frontendPort')]"
-          },
-          "backendPort": {
-            "value": "[parameters('backendPort')]"
-          },
-          "backendIPAddresses": {
-            "value": "[parameters('backendIPAddresses')]"
-          },
-          "cookieBasedAffinity": {
-            "value": "[parameters('cookieBasedAffinity')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
-      } 
-    }
+      }
+    //   {
+    //     "apiVersion": "2017-05-10",
+    //     "name": "appgw",
+    //     "type": "Microsoft.Resources/deployments",
+    //     "properties": {
+    //       "mode": "Incremental",
+    //       "TemplateLink": {
+    //        "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
+    //       },
+    //     "parameters": {
+    //       "virtualNetworkName": {
+    //         "value": "[parameters('virtualNetworkName')]"
+    //         },
+    //       "vnetAddressPrefix": {
+    //         "value": "[parameters('vnetAddressPrefix')]"
+    //       },
+    //       "subnetName": {
+    //         "value": "sapjiraqagw"
+    //       },
+    //       "subnetPrefix": {
+    //         "value": "[parameters('subnetPrefix')]"
+    //       },
+    //       "applicationGatewayName": {
+    //         "value": "[parameters('applicationGatewayName')]"
+    //       },
+    //       "applicationGatewaySize": {
+    //         "value": "[parameters('applicationGatewaySize')]"
+    //       },
+    //       "applicationGatewayInstanceCount": {
+    //         "value": "[parameters('applicationGatewayInstanceCount')]"
+    //       },
+    //       "frontendPort": {
+    //         "value": "[parameters('frontendPort')]"
+    //       },
+    //       "backendPort": {
+    //         "value": "[parameters('backendPort')]"
+    //       },
+    //       "backendIPAddresses": {
+    //         "value": "[parameters('backendIPAddresses')]"
+    //       },
+    //       "cookieBasedAffinity": {
+    //         "value": "[parameters('cookieBasedAffinity')]"
+    //       },
+    //       "location": {
+    //         "value": "[parameters('location')]"
+    //       }
+    //     }
+    //   } 
+    // }
    ],
     "outputs": {  }
   }
