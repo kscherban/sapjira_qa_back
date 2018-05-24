@@ -1,193 +1,255 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dbUsername": {
-            "type": "string",
-            "metadata": {
-                "description": "Database username"
-            }
-        },
-        "dbPassword": {
-            "type": "string",
-            "metadata": {
-                "description": "Database password"
-            }
-        },
-        "adminUsername": {
-            "type": "string"
-          },
-          "adminPassword": {
-            "type": "string"
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "dbUsername": {
+          "type": "string",
+          "metadata": {
+              "description": "Database username"
           }
-    },
-    "variables": {
-      "sapjiradcvnetID": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
-        "storageName": "datastorage",
-        "namespace": "jira",
-        "sql": {
-            "server": {
-                "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
-                "username": "[parameters('dbUsername')]",
-                "password": "[parameters('dbPassword')]"
-            },
-            "database": {
-                "name": "[concat('jira', 'sqldatabase')]",
-                "edition": "Premium",
-                "collation": "SQL_Latin1_General_CP437_CI_AI",
-                "maxSizeBytes": "107374182400",
-                "schema": "jiraschema"
-            }
-        }
-    },
-    "resources": [
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[concat(variables('storagename'), uniqueString(resourceGroup().id))]",
-            "apiVersion": "2015-06-15",
-            "location": "West Europe",
-            "properties": {
-              "accountType": "Standard_LRS"
-            }
-          },
-  {
-    "name": "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]",
-    "type": "Microsoft.Sql/servers",
-    "apiVersion": "2015-05-01-preview",
-    "location": "[resourceGroup().location]",
-    "identity": {
-      "type": "SystemAssigned"
-    },
-    "properties": {
-      "administratorLogin": "[variables('sql').server.username]",
-      "administratorLoginPassword": "[variables('sql').server.password]",
-      "version": "12.0"
-    },
-    "resources": [
-    {
-        "type": "databases",
-        "name": "[variables('sql').database.name]",
-        "apiVersion": "2015-05-01-preview",
-        "location": "[resourceGroup().location]",
-        "properties": {
-            "edition": "[variables('sql').database.edition]",
-            "collation": "[variables('sql').database.collation]",
-            "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
-            "requestedServiceObjectiveName": "Premium"
+      },
+      "dbPassword": {
+          "type": "string",
+          "metadata": {
+              "description": "Database password"
+          }
+      },
+      "adminUsername": {
+          "type": "string"
         },
-        "dependsOn": [
-            "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
-        ]
+        "adminPassword": {
+          "type": "string"
+        },
+        "landscape": {
+          "type": "string"
+      },
+      "ip-pool": {
+        "type": "array"
+    },
+      "sapjiradcvnetID": {
+        "type": "string"
+      },
+      "ifacecount": {
+          "type": "int"
+      },
+      "storagecount": {
+        "type": "int"
+    },
+      "jumpcount": {
+        "type": "int"
+      },
+    "VmSize": {
+        "type": "string"
+    },
+    "jumpboxSshUser": {
+        "type": "string"
+    },
+    "jumpboxSshKey": {
+        "type": "string"
+    },
+    "virtualNetworkName": {
+      "type": "string"
+      },
+    "vnetAddressPrefix": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "subnetPrefix": {
+      "type": "string"
+    },
+    "applicationGatewayName": {
+      "type": "string"
+    },
+    "applicationGatewaySize": {
+      "type": "string"
+    },
+    "applicationGatewayInstanceCount": {
+      "type": "int"
+    },
+    "frontendPort": {
+      "type": "int"
+    },
+    "backendPort": {
+      "type": "int"
+    },
+    "backendIPAddresses": {
+      "type": "array"
+    },
+    "cookieBasedAffinity": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
     }
-    ]
   },
-  {
-    "type": "Microsoft.Compute/virtualMachineScaleSets",
-        "name": "myscaleset",
-        "location": "[resourceGroup().location]",
-        "apiVersion": "2017-03-30",
-        "sku": {
-          "name": "Standard_A1",
-          "tier": "Standard",
-          "capacity": 1
-        },
-        "properties": {
-          "upgradePolicy": {
-            "mode": "Manual"
+  "variables": {
+      "storageName": "datastorage",
+      "namespace": "jira",
+      "sql": {
+          "server": {
+              "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
+              "username": "[parameters('dbUsername')]",
+              "password": "[parameters('dbPassword')]"
           },
-          "virtualMachineProfile": {
-            "storageProfile": {
-              "imageReference": {
-                "publisher": "Canonical",
-                "offer": "UbuntuServer",
-                "sku": "16.04-LTS",
-                "version": "latest"       
-              }
-            },
-            "osProfile": {
-              "computerNamePrefix": "vm",
-              "adminUsername": "[parameters('adminUsername')]",
-              "adminPassword": "[parameters('adminPassword')]"
-            },
-            "networkProfile": {
-                "networkInterfaceConfigurations": [
-                    {
-                      "name": "myNic",
-                      "properties": {
-                        "primary": true,
-                        "ipConfigurations": [
-                          {
-                            "name": "myIpConfig",
-                            "properties": {
-                              "subnet": {
-                                "id": "[concat(variables('sapjiradcvnetID'), '/subnets/', 'sapjiraqaback')]"
-                              }
+          "database": {
+              "name": "[concat('jira', 'sqldatabase')]",
+              "edition": "Premium",
+              "collation": "SQL_Latin1_General_CP437_CI_AI",
+              "maxSizeBytes": "107374182400",
+              "schema": "jiraschema"
+          }
+      }
+  },
+  "resources": [
+      {
+          "type": "Microsoft.Storage/storageAccounts",
+          "name": "[concat(variables('storagename'), uniqueString(resourceGroup().id))]",
+          "apiVersion": "2015-06-15",
+          "location": "West Europe",
+          "properties": {
+            "accountType": "Standard_LRS"
+          }
+        },
+{
+  "name": "[concat(variables('sql').server.name, uniqueString(resourceGroup().id))]",
+  "type": "Microsoft.Sql/servers",
+  "apiVersion": "2015-05-01-preview",
+  "location": "[resourceGroup().location]",
+  "identity": {
+    "type": "SystemAssigned"
+  },
+  "properties": {
+    "administratorLogin": "[variables('sql').server.username]",
+    "administratorLoginPassword": "[variables('sql').server.password]",
+    "version": "12.0"
+  },
+  "resources": [
+  {
+      "type": "databases",
+      "name": "[variables('sql').database.name]",
+      "apiVersion": "2015-05-01-preview",
+      "location": "[resourceGroup().location]",
+      "properties": {
+          "edition": "[variables('sql').database.edition]",
+          "collation": "[variables('sql').database.collation]",
+          "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+          "requestedServiceObjectiveName": "Premium"
+      },
+      "dependsOn": [
+          "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
+      ]
+  }
+  ]
+},
+{
+  "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "name": "myscaleset",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2017-03-30",
+      "sku": {
+        "name": "Standard_A1",
+        "tier": "Standard",
+        "capacity": 1
+      },
+      "properties": {
+        "upgradePolicy": {
+          "mode": "Manual"
+        },
+        "virtualMachineProfile": {
+          "storageProfile": {
+            "imageReference": {
+              "publisher": "Canonical",
+              "offer": "UbuntuServer",
+              "sku": "16.04-LTS",
+              "version": "latest"       
+            }
+          },
+          "osProfile": {
+            "computerNamePrefix": "vm",
+            "adminUsername": "[parameters('adminUsername')]",
+            "adminPassword": "[parameters('adminPassword')]"
+          },
+          "networkProfile": {
+              "networkInterfaceConfigurations": [
+                  {
+                    "name": "myNic",
+                    "properties": {
+                      "primary": true,
+                      "ipConfigurations": [
+                        {
+                          "name": "myIpConfig",
+                          "properties": {
+                            "subnet": {
+                              "id": "[concat('/subscriptions/', parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqaback')]"
                             }
                           }
-                        ]
-                      }
+                        }
+                      ]
                     }
-                ]
-            }
+                  }
+              ]
           }
         }
-      },
-      {
-        "apiVersion": "2017-05-10",
-        "name": "appgw",
-        "type": "Microsoft.Resources/deployments",
-        "properties": {
-          "mode": "Incremental",
-          "TemplateLink": {
-           "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
+      }
+    },
+    {
+      "apiVersion": "2017-05-10",
+      "name": "appgw",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "TemplateLink": {
+         "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
+        },
+        "parametersLink": {
+          "uri":"https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/parameters.json",
+          "contentVersion":"1.0.0.0"
+       },
+      "parameters": {
+        "sapjiradcvnetID": {
+          "value": "[parameters('sapjiradcvnetID')]"
+        },
+        "virtualNetworkName": {
+          "value": "[parameters('sapjiradcvnetID')]"
           },
-          "parametersLink": {
-            "uri":"https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/parameters.json",
-            "contentVersion":"1.0.0.0"
-         }
-        // "parameters": {
-        //   "sapjiradcvnetID": {
-        //     "value": "[variables('sapjiradcvnetID')]"
-        //   },
-        //   "virtualNetworkName": {
-        //     "value": "[parameters('virtualNetworkName')]"
-        //     },
-        //   "vnetAddressPrefix": {
-        //     "value": "[parameters('vnetAddressPrefix')]"
-        //   },
-        //   "subnetName": {
-        //     "value": "sapjiraqagw"
-        //   },
-        //   "subnetPrefix": {
-        //     "value": "[parameters('subnetPrefix')]"
-        //   },
-        //   "applicationGatewayName": {
-        //     "value": "[variables('applicationGatewayName')]"
-        //   },
-        //   "applicationGatewaySize": {
-        //     "value": "[parameters('applicationGatewaySize')]"
-        //   },
-        //   "applicationGatewayInstanceCount": {
-        //     "value": "[parameters('applicationGatewayInstanceCount')]"
-        //   },
-        //   "frontendPort": {
-        //     "value": "[parameters('frontendPort')]"
-        //   },
-        //   "backendPort": {
-        //     "value": "[parameters('backendPort')]"
-        //   },
-        //   "backendIPAddresses": {
-        //     "value": "[parameters('backendIPAddresses')]"
-        //   },
-        //   "cookieBasedAffinity": {
-        //     "value": "[parameters('cookieBasedAffinity')]"
-        //   },
-        //   "location": {
-        //     "value": "[parameters('location')]"
-        //   }
-        // }
-      } 
-    }
-   ],
-    "outputs": {  }
+        "vnetAddressPrefix": {
+          "value": "[parameters('vnetAddressPrefix')]"
+        },
+        "subnetName": {
+          "value": "sapjiraqagw"
+        },
+        "subnetPrefix": {
+          "value": "[parameters('subnetPrefix')]"
+        },
+        "applicationGatewayName": {
+          "value": "[parameters('applicationGatewayName')]"
+        },
+        "applicationGatewaySize": {
+          "value": "[parameters('applicationGatewaySize')]"
+        },
+        "applicationGatewayInstanceCount": {
+          "value": "[parameters('applicationGatewayInstanceCount')]"
+        },
+        "frontendPort": {
+          "value": "[parameters('frontendPort')]"
+        },
+        "backendPort": {
+          "value": "[parameters('backendPort')]"
+        },
+        "backendIPAddresses": {
+          "value": "[parameters('backendIPAddresses')]"
+        },
+        "cookieBasedAffinity": {
+          "value": "[parameters('cookieBasedAffinity')]"
+        },
+        "location": {
+          "value": "[parameters('location')]"
+        }
+      }
+    } 
   }
+ ],
+  "outputs": {  }
+}

@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+      "sapjiradcvnetID": {
+        "value": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]"
+      },
         "dbUsername": {
             "value": "alexb"
         },
@@ -23,9 +26,6 @@
             "10.79.81.44"
           ]
       },
-        "sapjiradcvnetID": {
-          "value": "[variables('sapjiradcvnetID')]"
-        },
         "ifacecount": {
             "value": 1
         },
