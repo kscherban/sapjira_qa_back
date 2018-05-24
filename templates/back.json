@@ -47,18 +47,18 @@
     "jumpboxSshKey": {
         "type": "string"
     },
-    // "virtualNetworkName": {
-    //   "type": "string"
-    //   },
-    // "vnetAddressPrefix": {
-    //   "type": "string"
-    // },
-    // "subnetName": {
-    //   "type": "string"
-    // },
-    // "subnetPrefix": {
-    //   "type": "string"
-    // },
+    "virtualNetworkName": {
+      "type": "string"
+      },
+    "vnetAddressPrefix": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "subnetPrefix": {
+      "type": "string"
+    },
     "applicationGatewayName": {
       "type": "string"
     },
