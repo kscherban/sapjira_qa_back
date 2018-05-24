@@ -153,34 +153,34 @@
           },
           "subnetName": {
             "value": "sapjiraqagw"
-          },
-          "subnetPrefix": {
-            "value": "[parameters('subnetPrefix')]"
-          },
-          "applicationGatewayName": {
-            "value": "[parameters('applicationGatewayName')]"
-          },
-          "applicationGatewaySize": {
-            "value": "[parameters('applicationGatewaySize')]"
-          },
-          "applicationGatewayInstanceCount": {
-            "value": "[parameters('applicationGatewayInstanceCount')]"
-          },
-          "frontendPort": {
-            "value": "[parameters('frontendPort')]"
-          },
-          "backendPort": {
-            "value": "[parameters('backendPort')]"
-          },
-          "backendIPAddresses": {
-            "value": "[parameters('backendIPAddresses')]"
-          },
-          "cookieBasedAffinity": {
-            "value": "[parameters('cookieBasedAffinity')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
           }
+          // "subnetPrefix": {
+          //   "value": "[parameters('subnetPrefix')]"
+          // },
+          // "applicationGatewayName": {
+          //   "value": "[parameters('applicationGatewayName')]"
+          // },
+          // "applicationGatewaySize": {
+          //   "value": "[parameters('applicationGatewaySize')]"
+          // },
+          // "applicationGatewayInstanceCount": {
+          //   "value": "[parameters('applicationGatewayInstanceCount')]"
+          // },
+          // "frontendPort": {
+          //   "value": "[parameters('frontendPort')]"
+          // },
+          // "backendPort": {
+          //   "value": "[parameters('backendPort')]"
+          // },
+          // "backendIPAddresses": {
+          //   "value": "[parameters('backendIPAddresses')]"
+          // },
+          // "cookieBasedAffinity": {
+          //   "value": "[parameters('cookieBasedAffinity')]"
+          // },
+          // "location": {
+          //   "value": "[parameters('location')]"
+          // }
         }
       } 
     }
