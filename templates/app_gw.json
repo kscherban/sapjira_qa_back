@@ -61,7 +61,7 @@
               "name": "appGatewayIpConfig",
               "properties": {
                 "subnet": {
-                  "id": "[concat(parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqagw')]"
+                  "id": "[concat(resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet'), '/subnets/', 'sapjiraqagw')]"
                 }
               }
             }
@@ -71,7 +71,7 @@
               "name": "appGatewayFrontendIP",
               "properties": {
                 "subnet": {
-                  "id": "[concat(parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqagw')]"
+                  "id": "[concat(resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet'), '/subnets/', 'sapjiraqagw')]"
                 }
               }
             }
