@@ -207,18 +207,18 @@
         "sapjiradcvnetID": {
           "value": "[parameters('sapjiradcvnetID')]"
         },
-        // "virtualNetworkName": {
-        //   "value": "[parameters('virtualNetworkName')]"
-        //   },
-        // "vnetAddressPrefix": {
-        //   "value": "[parameters('vnetAddressPrefix')]"
-        // },
-        // "subnetName": {
-        //   "value": "sapjiraqagw"
-        // },
-        // "subnetPrefix": {
-        //   "value": "[parameters('subnetPrefix')]"
-        // },
+        "virtualNetworkName": {
+          "value": "[parameters('virtualNetworkName')]"
+          },
+        "vnetAddressPrefix": {
+          "value": "[parameters('vnetAddressPrefix')]"
+        },
+        "subnetName": {
+          "value": "sapjiraqagw"
+        },
+        "subnetPrefix": {
+          "value": "[parameters('subnetPrefix')]"
+        },
         "applicationGatewayName": {
           "value": "[parameters('applicationGatewayName')]"
         },
