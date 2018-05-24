@@ -47,18 +47,18 @@
     "jumpboxSshKey": {
         "type": "string"
     },
-    "virtualNetworkName": {
-      "type": "string"
-      },
-    "vnetAddressPrefix": {
-      "type": "string"
-    },
-    "subnetName": {
-      "type": "string"
-    },
-    "subnetPrefix": {
-      "type": "string"
-    },
+    // "virtualNetworkName": {
+    //   "type": "string"
+    //   },
+    // "vnetAddressPrefix": {
+    //   "type": "string"
+    // },
+    // "subnetName": {
+    //   "type": "string"
+    // },
+    // "subnetPrefix": {
+    //   "type": "string"
+    // },
     "applicationGatewayName": {
       "type": "string"
     },
@@ -207,18 +207,18 @@
         "sapjiradcvnetID": {
           "value": "[parameters('sapjiradcvnetID')]"
         },
-        "virtualNetworkName": {
-          "value": "[parameters('virtualNetworkName')]"
-          },
-        "vnetAddressPrefix": {
-          "value": "[parameters('vnetAddressPrefix')]"
-        },
-        "subnetName": {
-          "value": "sapjiraqagw"
-        },
-        "subnetPrefix": {
-          "value": "[parameters('subnetPrefix')]"
-        },
+        // "virtualNetworkName": {
+        //   "value": "[parameters('virtualNetworkName')]"
+        //   },
+        // "vnetAddressPrefix": {
+        //   "value": "[parameters('vnetAddressPrefix')]"
+        // },
+        // "subnetName": {
+        //   "value": "sapjiraqagw"
+        // },
+        // "subnetPrefix": {
+        //   "value": "[parameters('subnetPrefix')]"
+        // },
         "applicationGatewayName": {
           "value": "[parameters('applicationGatewayName')]"
         },
