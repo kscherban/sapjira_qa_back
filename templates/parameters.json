@@ -1,0 +1,88 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dbUsername": {
+            "value": "alexb"
+        },
+        "dbPassword": {
+            "value": "123qwewer!@#$"
+        },
+        "adminUsername": {
+            "value": "alexb"
+        },
+        "adminPassword": {
+            "value": "123qwewer!@#$"
+        },
+        "landscape": {
+            "value": "qa"
+        },
+        "ip-pool": {
+          "value": [
+            "10.79.81.43",
+            "10.79.81.44"
+          ]
+      },
+        "ifacecount": {
+            "value": 1
+        },
+        "storagecount": {
+          "value": 1
+      },
+        "jumpcount": {
+          "value": 1
+        },
+      "VmSize": {
+          "value": "Standard_A0"
+      },
+      "jumpboxSshUser": {
+          "value": "jiraadmin"
+      },
+      "jumpboxSshKey": {
+          "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA9CgRrAvu0f8YtV71yn1NnvkKdYah0gfprB8k9QXG1P7Yn5jX4DQZdG12d5ZnfzlYsLh0uSfBj2Ih+gs4fngkbDXsYFKNGVdHYZHHJX1xfkGaLUt57yV/M9VqHj8DeTsMUa0bDORsEZDzxvHD3FgoDqB1nz+2Cx6S54Bqe9tdihPn1CElq+7EOQvWNjHbw9lpqFJElbsD96RGhiTCDNanBChvI3D+95hJ9XM9EFUm+DlZMfXgEUCo4pqnTpmTaL7f1qTPHUkWWSKTsX/KI4KRnKa8cYU92nYPhIwZDLywsY3s670wpUgElo1ERI9JjEofixyirsqwzxUza4n1aMpRdw=="
+      },
+      "virtualNetworkName": {
+        "value": "/subscriptions/4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac/resourceGroups/sapjira_shared/providers/Microsoft.Network/virtualNetworks/sapjiradc-vnet"
+        },
+      "vnetAddressPrefix": {
+        "value": "10.0.0.0/16"
+      },
+      "subnetName": {
+        "value": "subnetappgw"
+      },
+      "subnetPrefix": {
+        "value": "10.0.1.0/24"
+      },
+      "applicationGatewayName": {
+        "value": "jiraappgateway"
+      },
+      "applicationGatewaySize": {
+        "value": "Standard_Small"
+      },
+      "applicationGatewayInstanceCount": {
+        "value": 4
+      },
+      "frontendPort": {
+        "value": 80
+      },
+      "backendPort": {
+        "value": 80
+      },
+      "backendIPAddresses": {
+        "value": [
+          {
+            "IpAddress": "10.0.0.4"
+          },
+          {
+            "IpAddress": "10.0.0.5"
+          }
+        ]
+      },
+      "cookieBasedAffinity": {
+        "value": "Disabled"
+      },
+      "location": {
+        "value": "[resourceGroup().location]"
+      }
+  }
+}

@@ -22,6 +22,7 @@
           }
     },
     "variables": {
+      "applicationGatewayName": "appgw",
       "sapjiradcvnetID": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
         "storageName": "datastorage",
         "namespace": "jira",
@@ -157,9 +158,9 @@
           // "subnetPrefix": {
           //   "value": "[parameters('subnetPrefix')]"
           // },
-          // "applicationGatewayName": {
-          //   "value": "[parameters('applicationGatewayName')]"
-          // },
+          "applicationGatewayName": {
+            "value": "[variables('applicationGatewayName')]"
+          }
           // "applicationGatewaySize": {
           //   "value": "[parameters('applicationGatewaySize')]"
           // },
