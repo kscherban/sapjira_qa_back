@@ -212,7 +212,7 @@
           "value": "[parameters('sapjiradcvnetID')]"
         },
         "virtualNetworkName": {
-          "value": "[parameters('sapjiradcvnetID')]"
+          "value": "[parameters('virtualNetworkName')]"
           },
         "vnetAddressPrefix": {
           "value": "[parameters('vnetAddressPrefix')]"
