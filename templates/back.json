@@ -148,9 +148,9 @@
           // "virtualNetworkName": {
           //   "value": "[parameters('virtualNetworkName')]"
           //   },
-          "vnetAddressPrefix": {
-            "value": "[parameters('vnetAddressPrefix')]"
-          },
+          // "vnetAddressPrefix": {
+          //   "value": "[parameters('vnetAddressPrefix')]"
+          // },
           "subnetName": {
             "value": "sapjiraqagw"
           }
