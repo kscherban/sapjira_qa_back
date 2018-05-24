@@ -47,9 +47,9 @@
     "jumpboxSshKey": {
         "type": "string"
     },
-    "virtualNetworkName": {
-      "type": "string"
-      },
+    // "virtualNetworkName": {
+    //   "type": "string"
+    //   },
     "vnetAddressPrefix": {
       "type": "string"
     },
@@ -207,9 +207,9 @@
         "sapjiradcvnetID": {
           "value": "[parameters('sapjiradcvnetID')]"
         },
-        "virtualNetworkName": {
-          "value": "[parameters('virtualNetworkName')]"
-          },
+        // "virtualNetworkName": {
+        //   "value": "[parameters('virtualNetworkName')]"
+        //   },
         "vnetAddressPrefix": {
           "value": "[parameters('vnetAddressPrefix')]"
         },

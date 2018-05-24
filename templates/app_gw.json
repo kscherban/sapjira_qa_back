@@ -5,9 +5,9 @@
       "sapjiradcvnetID": {
         "type": "string"
       },
-      "virtualNetworkName": {
-        "type": "string"
-      },
+      // "virtualNetworkName": {
+      //   "type": "string"
+      // },
       "vnetAddressPrefix": {
         "type": "string"
       },
