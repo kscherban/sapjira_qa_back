@@ -151,9 +151,9 @@
           // "vnetAddressPrefix": {
           //   "value": "[parameters('vnetAddressPrefix')]"
           // },
-          "subnetName": {
-            "value": "sapjiraqagw"
-          }
+          // "subnetName": {
+          //   "value": "sapjiraqagw"
+          // }
           // "subnetPrefix": {
           //   "value": "[parameters('subnetPrefix')]"
           // },
