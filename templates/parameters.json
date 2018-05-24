@@ -23,6 +23,9 @@
             "10.79.81.44"
           ]
       },
+        "sapjiradcvnetID": {
+          "value": "[variables('sapjiradcvnetID')]"
+        },
         "ifacecount": {
             "value": 1
         },

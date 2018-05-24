@@ -141,47 +141,51 @@
           "TemplateLink": {
            "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
           },
-        "parameters": {
-          "sapjiradcvnetID": {
-            "value": "[variables('sapjiradcvnetID')]"
-          },
-          "virtualNetworkName": {
-            "value": "[parameters('virtualNetworkName')]"
-            },
-          "vnetAddressPrefix": {
-            "value": "[parameters('vnetAddressPrefix')]"
-          },
-          "subnetName": {
-            "value": "sapjiraqagw"
-          },
-          "subnetPrefix": {
-            "value": "[parameters('subnetPrefix')]"
-          },
-          "applicationGatewayName": {
-            "value": "[variables('applicationGatewayName')]"
-          },
-          "applicationGatewaySize": {
-            "value": "[parameters('applicationGatewaySize')]"
-          },
-          "applicationGatewayInstanceCount": {
-            "value": "[parameters('applicationGatewayInstanceCount')]"
-          },
-          "frontendPort": {
-            "value": "[parameters('frontendPort')]"
-          },
-          "backendPort": {
-            "value": "[parameters('backendPort')]"
-          },
-          "backendIPAddresses": {
-            "value": "[parameters('backendIPAddresses')]"
-          },
-          "cookieBasedAffinity": {
-            "value": "[parameters('cookieBasedAffinity')]"
-          },
-          "location": {
-            "value": "[parameters('location')]"
-          }
-        }
+          "parametersLink": {
+            "uri":"https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/parameters.json",
+            "contentVersion":"1.0.0.0"
+         }
+        // "parameters": {
+        //   "sapjiradcvnetID": {
+        //     "value": "[variables('sapjiradcvnetID')]"
+        //   },
+        //   "virtualNetworkName": {
+        //     "value": "[parameters('virtualNetworkName')]"
+        //     },
+        //   "vnetAddressPrefix": {
+        //     "value": "[parameters('vnetAddressPrefix')]"
+        //   },
+        //   "subnetName": {
+        //     "value": "sapjiraqagw"
+        //   },
+        //   "subnetPrefix": {
+        //     "value": "[parameters('subnetPrefix')]"
+        //   },
+        //   "applicationGatewayName": {
+        //     "value": "[variables('applicationGatewayName')]"
+        //   },
+        //   "applicationGatewaySize": {
+        //     "value": "[parameters('applicationGatewaySize')]"
+        //   },
+        //   "applicationGatewayInstanceCount": {
+        //     "value": "[parameters('applicationGatewayInstanceCount')]"
+        //   },
+        //   "frontendPort": {
+        //     "value": "[parameters('frontendPort')]"
+        //   },
+        //   "backendPort": {
+        //     "value": "[parameters('backendPort')]"
+        //   },
+        //   "backendIPAddresses": {
+        //     "value": "[parameters('backendIPAddresses')]"
+        //   },
+        //   "cookieBasedAffinity": {
+        //     "value": "[parameters('cookieBasedAffinity')]"
+        //   },
+        //   "location": {
+        //     "value": "[parameters('location')]"
+        //   }
+        // }
       } 
     }
    ],
