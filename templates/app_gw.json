@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+      "sapjiradcvnetID": {
+        "type": "string"
+      },
       "virtualNetworkName": {
         "type": "string"
       },
@@ -40,7 +43,6 @@
       }
     },
     "variables": {
-      "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]"
     },
     "resources": [
       {
@@ -48,9 +50,6 @@
         "name": "[parameters('applicationGatewayName')]",
         "type": "Microsoft.Network/applicationGateways",
         "location": "[parameters('location')]",
-        // "dependsOn": [
-        //   "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
-        // ],
         "properties": {
           "sku": {
             "name": "[parameters('applicationGatewaySize')]",
@@ -62,7 +61,7 @@
               "name": "appGatewayIpConfig",
               "properties": {
                 "subnet": {
-                  "id": "[variables('subnetRef')]"
+                  "id": "[concat(parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqagw')]"
                 }
               }
             }
@@ -72,7 +71,7 @@
               "name": "appGatewayFrontendIP",
               "properties": {
                 "subnet": {
-                  "id": "[variables('subnetRef')]"
+                  "id": "[concat(parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqagw')]"
                 }
               }
             }

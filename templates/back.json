@@ -22,7 +22,7 @@
           }
     },
     "variables": {
-      "sapjiradcvnetid": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
+      "sapjiradcvnetID": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
         "storageName": "datastorage",
         "namespace": "jira",
         "sql": {
@@ -86,9 +86,6 @@
         "name": "myscaleset",
         "location": "[resourceGroup().location]",
         "apiVersion": "2017-03-30",
-        "dependsOn": [
-            "[variables('sapjiradcvnetid')]"
-        ],
         "sku": {
           "name": "Standard_A1",
           "tier": "Standard",
@@ -123,7 +120,7 @@
                             "name": "myIpConfig",
                             "properties": {
                               "subnet": {
-                                "id": "[concat(variables('sapjiradcvnetid'), 'sapjiraqaback')]"
+                                "id": "[concat(variables('sapjiradcvnetID'), '/subnets/', 'sapjiraqaback')]"
                               }
                             }
                           }
@@ -134,56 +131,59 @@
             }
           }
         }
-      }
-    //   {
-    //     "apiVersion": "2017-05-10",
-    //     "name": "appgw",
-    //     "type": "Microsoft.Resources/deployments",
-    //     "properties": {
-    //       "mode": "Incremental",
-    //       "TemplateLink": {
-    //        "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
-    //       },
-    //     "parameters": {
-    //       "virtualNetworkName": {
-    //         "value": "[parameters('virtualNetworkName')]"
-    //         },
-    //       "vnetAddressPrefix": {
-    //         "value": "[parameters('vnetAddressPrefix')]"
-    //       },
-    //       "subnetName": {
-    //         "value": "sapjiraqagw"
-    //       },
-    //       "subnetPrefix": {
-    //         "value": "[parameters('subnetPrefix')]"
-    //       },
-    //       "applicationGatewayName": {
-    //         "value": "[parameters('applicationGatewayName')]"
-    //       },
-    //       "applicationGatewaySize": {
-    //         "value": "[parameters('applicationGatewaySize')]"
-    //       },
-    //       "applicationGatewayInstanceCount": {
-    //         "value": "[parameters('applicationGatewayInstanceCount')]"
-    //       },
-    //       "frontendPort": {
-    //         "value": "[parameters('frontendPort')]"
-    //       },
-    //       "backendPort": {
-    //         "value": "[parameters('backendPort')]"
-    //       },
-    //       "backendIPAddresses": {
-    //         "value": "[parameters('backendIPAddresses')]"
-    //       },
-    //       "cookieBasedAffinity": {
-    //         "value": "[parameters('cookieBasedAffinity')]"
-    //       },
-    //       "location": {
-    //         "value": "[parameters('location')]"
-    //       }
-    //     }
-    //   } 
-    // }
+      },
+      {
+        "apiVersion": "2017-05-10",
+        "name": "appgw",
+        "type": "Microsoft.Resources/deployments",
+        "properties": {
+          "mode": "Incremental",
+          "TemplateLink": {
+           "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
+          },
+        "parameters": {
+          "sapjiradcvnetID": {
+            "value": "[variables('sapjiradcvnetID')]"
+          },
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+            },
+          "vnetAddressPrefix": {
+            "value": "[parameters('vnetAddressPrefix')]"
+          },
+          "subnetName": {
+            "value": "sapjiraqagw"
+          },
+          "subnetPrefix": {
+            "value": "[parameters('subnetPrefix')]"
+          },
+          "applicationGatewayName": {
+            "value": "[parameters('applicationGatewayName')]"
+          },
+          "applicationGatewaySize": {
+            "value": "[parameters('applicationGatewaySize')]"
+          },
+          "applicationGatewayInstanceCount": {
+            "value": "[parameters('applicationGatewayInstanceCount')]"
+          },
+          "frontendPort": {
+            "value": "[parameters('frontendPort')]"
+          },
+          "backendPort": {
+            "value": "[parameters('backendPort')]"
+          },
+          "backendIPAddresses": {
+            "value": "[parameters('backendIPAddresses')]"
+          },
+          "cookieBasedAffinity": {
+            "value": "[parameters('cookieBasedAffinity')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          }
+        }
+      } 
+    }
    ],
     "outputs": {  }
   }
