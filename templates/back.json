@@ -22,7 +22,6 @@
           }
     },
     "variables": {
-      "applicationGatewayName": "appgw",
       "sapjiradcvnetID": "[resourceid('4f2a8a58-fafe-4f8a-9a7c-bc7fb9da01ac', 'sapjira_shared', 'Microsoft.Network/virtualNetworks', 'sapjiradc-vnet')]",
         "storageName": "datastorage",
         "namespace": "jira",
@@ -146,42 +145,42 @@
           "sapjiradcvnetID": {
             "value": "[variables('sapjiradcvnetID')]"
           },
-          // "virtualNetworkName": {
-          //   "value": "[parameters('virtualNetworkName')]"
-          //   },
-          // "vnetAddressPrefix": {
-          //   "value": "[parameters('vnetAddressPrefix')]"
-          // },
-          // "subnetName": {
-          //   "value": "sapjiraqagw"
-          // }
-          // "subnetPrefix": {
-          //   "value": "[parameters('subnetPrefix')]"
-          // },
+          "virtualNetworkName": {
+            "value": "[parameters('virtualNetworkName')]"
+            },
+          "vnetAddressPrefix": {
+            "value": "[parameters('vnetAddressPrefix')]"
+          },
+          "subnetName": {
+            "value": "sapjiraqagw"
+          },
+          "subnetPrefix": {
+            "value": "[parameters('subnetPrefix')]"
+          },
           "applicationGatewayName": {
             "value": "[variables('applicationGatewayName')]"
+          },
+          "applicationGatewaySize": {
+            "value": "[parameters('applicationGatewaySize')]"
+          },
+          "applicationGatewayInstanceCount": {
+            "value": "[parameters('applicationGatewayInstanceCount')]"
+          },
+          "frontendPort": {
+            "value": "[parameters('frontendPort')]"
+          },
+          "backendPort": {
+            "value": "[parameters('backendPort')]"
+          },
+          "backendIPAddresses": {
+            "value": "[parameters('backendIPAddresses')]"
+          },
+          "cookieBasedAffinity": {
+            "value": "[parameters('cookieBasedAffinity')]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
           }
-          // "applicationGatewaySize": {
-          //   "value": "[parameters('applicationGatewaySize')]"
-          // },
-          // "applicationGatewayInstanceCount": {
-          //   "value": "[parameters('applicationGatewayInstanceCount')]"
-          // },
-          // "frontendPort": {
-          //   "value": "[parameters('frontendPort')]"
-          // },
-          // "backendPort": {
-          //   "value": "[parameters('backendPort')]"
-          // },
-          // "backendIPAddresses": {
-          //   "value": "[parameters('backendIPAddresses')]"
-          // },
-          // "cookieBasedAffinity": {
-          //   "value": "[parameters('cookieBasedAffinity')]"
-          // },
-          // "location": {
-          //   "value": "[parameters('location')]"
-          // }
         }
       } 
     }
