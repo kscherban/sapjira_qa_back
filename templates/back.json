@@ -182,7 +182,7 @@
                           "name": "myIpConfig",
                           "properties": {
                             "subnet": {
-                              "id": "[concat('/subscriptions/', parameters('sapjiradcvnetID'), '/subnets/', 'sapjiraqaback')]"
+                              "id": "[concat(resourceId('sapjira_shared','Microsoft.Network/virtualNetworks', 'sapjiradc-vnet'), '/subnets/', 'sapjiraqaback')]"
                             }
                           }
                         }
@@ -203,10 +203,6 @@
         "TemplateLink": {
          "uri": "https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/app_gw.json"
         },
-        "parametersLink": {
-          "uri":"https://raw.githubusercontent.com/kscherban/sapjira_qa_back/master/templates/parameters.json",
-          "contentVersion":"1.0.0.0"
-       },
       "parameters": {
         "sapjiradcvnetID": {
           "value": "[parameters('sapjiradcvnetID')]"
