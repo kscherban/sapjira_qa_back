@@ -83,9 +83,9 @@
   },
   "variables": {
     "namespace": "sapjira",
-    "storageName": "[concat(variables('namespace'), parameters('landscape'), 'datastorage')]",
-    "scalesetName": "[concat(variables('namespace'), parameters('landscape'), 'scaleset')]",
-    "appgwName": "[concat(variables('namespace'), parameters('landscape'), 'appgw')]",
+    "storageName": "[concat(variables('namespace'), parameters('landscape'), 'datastorage',uniqueString(resourceGroup().id))]",
+    "scalesetName": "[concat(variables('namespace'), parameters('landscape'), 'scaleset', uniqueString(resourceGroup().id))]",
+    "appgwName": "[concat(variables('namespace'), parameters('landscape'), 'appgw', uniqueString(resourceGroup().id))]",
       "sql": {
           "server": {
               "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
@@ -104,7 +104,7 @@
   "resources": [
       {
           "type": "Microsoft.Storage/storageAccounts",
-          "name": "[concat(variables('storageName'), uniqueString(resourceGroup().id))]",
+          "name": "[variables('storageName')]",
           "apiVersion": "2015-06-15",
           "location": "West Europe",
           "properties": {
