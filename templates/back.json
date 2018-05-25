@@ -47,9 +47,6 @@
     "jumpboxSshKey": {
         "type": "string"
     },
-    // "virtualNetworkName": {
-    //   "type": "string"
-    //   },
     "vnetAddressPrefix": {
       "type": "string"
     },
@@ -95,7 +92,7 @@
           },
           "database": {
               "name": "[concat('jira', 'sqldatabase')]",
-              "edition": "Premium",
+              "edition": "P1",
               "collation": "SQL_Latin1_General_CP437_CI_AI",
               "maxSizeBytes": "107374182400",
               "schema": "jiraschema"
@@ -124,24 +121,24 @@
     "administratorLogin": "[variables('sql').server.username]",
     "administratorLoginPassword": "[variables('sql').server.password]",
     "version": "12.0"
-  },
-  "resources": [
-  {
-      "type": "databases",
-      "name": "[variables('sql').database.name]",
-      "apiVersion": "2015-05-01-preview",
-      "location": "[resourceGroup().location]",
-      "properties": {
-          "edition": "[variables('sql').database.edition]",
-          "collation": "[variables('sql').database.collation]",
-          "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
-          "requestedServiceObjectiveName": "Premium"
-      },
-      "dependsOn": [
-          "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
-      ]
   }
-  ]
+  // "resources": [
+  // {
+  //     "type": "databases",
+  //     "name": "[variables('sql').database.name]",
+  //     "apiVersion": "2015-05-01-preview",
+  //     "location": "[resourceGroup().location]",
+  //     "properties": {
+  //         "edition": "[variables('sql').database.edition]",
+  //         "collation": "[variables('sql').database.collation]",
+  //         "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
+  //         "requestedServiceObjectiveName": "Premium"
+  //     },
+  //     "dependsOn": [
+  //         "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
+  //     ]
+  // }
+  // ]
 },
 {
   "type": "Microsoft.Compute/virtualMachineScaleSets",
@@ -207,9 +204,6 @@
         "sapjiradcvnetID": {
           "value": "[parameters('sapjiradcvnetID')]"
         },
-        // "virtualNetworkName": {
-        //   "value": "[parameters('virtualNetworkName')]"
-        //   },
         "vnetAddressPrefix": {
           "value": "[parameters('vnetAddressPrefix')]"
         },
