@@ -82,8 +82,10 @@
     }
   },
   "variables": {
-      "storageName": "datastorage",
-      "namespace": "jira",
+    "namespace": "sapjira",
+    "storageName": "[concat(variables('namespace'), parameters('landscape'), 'datastorage')]",
+    "scalesetName": "[concat(variables('namespace'), parameters('landscape'), 'scaleset')]",
+    "appgwName": "[concat(variables('namespace'), parameters('landscape'), 'appgw')]",
       "sql": {
           "server": {
               "name": "[concat(variables('namespace'), 'sqlserver', uniqueString(resourceGroup().id))]",
@@ -102,7 +104,7 @@
   "resources": [
       {
           "type": "Microsoft.Storage/storageAccounts",
-          "name": "[concat(variables('storagename'), uniqueString(resourceGroup().id))]",
+          "name": "[concat(variables('storageName'), uniqueString(resourceGroup().id))]",
           "apiVersion": "2015-06-15",
           "location": "West Europe",
           "properties": {
@@ -122,27 +124,10 @@
     "administratorLoginPassword": "[variables('sql').server.password]",
     "version": "12.0"
   }
-  // "resources": [
-  // {
-  //     "type": "databases",
-  //     "name": "[variables('sql').database.name]",
-  //     "apiVersion": "2015-05-01-preview",
-  //     "location": "[resourceGroup().location]",
-  //     "properties": {
-  //         "edition": "[variables('sql').database.edition]",
-  //         "collation": "[variables('sql').database.collation]",
-  //         "maxSizeBytes": "[variables('sql').database.maxSizeBytes]",
-  //         "requestedServiceObjectiveName": "Premium"
-  //     },
-  //     "dependsOn": [
-  //         "[resourceId('Microsoft.Sql/servers/', concat(variables('sql').server.name, uniqueString(resourceGroup().id)))]"
-  //     ]
-  // }
-  // ]
 },
 {
   "type": "Microsoft.Compute/virtualMachineScaleSets",
-      "name": "myscaleset",
+      "name": "[variables('scalesetName')]",
       "location": "[resourceGroup().location]",
       "apiVersion": "2017-03-30",
       "sku": {
@@ -193,7 +178,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "appgw",
+      "name": "[variables('appgwName')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
