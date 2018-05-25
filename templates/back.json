@@ -199,7 +199,7 @@
           "value": "[parameters('subnetPrefix')]"
         },
         "applicationGatewayName": {
-          "value": "[parameters('applicationGatewayName')]"
+          "value": "[variables('appgwName')]"
         },
         "applicationGatewaySize": {
           "value": "[parameters('applicationGatewaySize')]"
